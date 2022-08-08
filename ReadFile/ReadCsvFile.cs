@@ -24,16 +24,9 @@ namespace FindNoTranslation.ReadFile
                     allLines = File.ReadAllLines(files[i].FullName);
                     for (int j = 0; j < allLines.Length; j++)
                     {
-                        if (IsSkip())
+                        if (FindNoTranslateMgr.GetInstance().IsMatch(allLines[j]) && IsSkip())
                         {
-                            foreach (var item in allLines[j])
-                            {
-                                if (FindNoTranslateMgr.GetInstance().IsMatch(item.ToString()))
-                                {
-                                    AddContent(allLines[j]);
-                                    break;
-                                }
-                            }
+                            AddContent(allLines[j]);
                         }
                     }
                 }

@@ -7,10 +7,10 @@ namespace FindNoTranslation
 {
     public static class Setting
     {
-        private static readonly string FILE_NAME = "AppSetting.txt";
-        private static ConfigData configData;
-
         public static readonly string DEFAULT_SAVE_NAME = "NoTranslation";
+        private static readonly string FILE_NAME = "AppSetting.txt";
+
+        private static ConfigData configData;
 
         public static void InitConfig()
         {
@@ -39,7 +39,7 @@ namespace FindNoTranslation
             }
             else
             {
-                Logger.LogFormat(LogEnum.ReadConfigError_NonePath, path);
+                Logger.LogError("AppSetting.txt文件不存在");
             }
         }
 

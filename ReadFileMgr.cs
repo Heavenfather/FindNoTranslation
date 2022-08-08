@@ -35,7 +35,7 @@ namespace FindNoTranslation
         private void ReadFileData()
         {
             FileEnum fe = Setting.GetReadType();
-            Logger.LogFormat(LogEnum.ReadFile, fe);
+            Logger.LogFormat(LogEnum.ReadFile, fe, Setting.GetFindLanguage());
             ReadFileBase fb = GetReadProgram(fe);
             fb.Read();
         }

@@ -33,20 +33,22 @@ namespace FindNoTranslation
         {
             bool result = false;
             //简体中文
-            result = Regex.IsMatch(content, @"[\u4e00-\u9fbb]");
+            for (int i = 0; i < content.Length; i++)
+            {
+                result = Regex.IsMatch(content[i].ToString(), @"[\u4e00-\u9fbb]");
+                if (result)
+                    break;
+            }
             //繁体中文
             if (!result)
             {
-                if (Regex.IsMatch(content, @"[\u4e00-\u9fbb]"))
+                foreach (var item in content)
                 {
-                    foreach (var item in content)
+                    char[] temp = Encoding.GetEncoding("big5").GetChars(Encoding.GetEncoding("big5").GetBytes(new char[] { item }));
+                    if (temp.Length != 1 || !item.Equals(temp[0]))
                     {
-                        char[] temp = Encoding.GetEncoding("big5").GetChars(Encoding.GetEncoding("big5").GetBytes(new char[] { item }));
-                        if (temp.Length != 1 || !item.Equals(temp[0]))
-                        {
-                            result = true;
-                            break;
-                        }
+                        result = true;
+                        break;
                     }
                 }
             }
@@ -55,7 +57,19 @@ namespace FindNoTranslation
 
         public bool IsEnglish(string content)
         {
-            return Regex.IsMatch(content, @"^[A-Za-z]+$");
+            bool result = false;
+            for (int i = 0; i < content.Length; i++)
+            {
+                result = Regex.IsMatch(content[i].ToString(), @"^[A-Za-z]+$");
+                if (result)
+                    break;
+            }
+            if (result)
+            {
+                var bytes = Encoding.UTF8.GetBytes(content);
+                result = bytes.Length == content.Length;
+            }
+            return result;
         }
 
     }

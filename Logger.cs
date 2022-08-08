@@ -45,7 +45,7 @@ namespace FindNoTranslation
                     content = "读取配置错误,不存在路径{0}";
                     break;
                 case LogEnum.ReadFile:
-                    content = "开始读取文件,读取类型:{0}";
+                    content = "开始读取文件,读取类型:{0},查找类型:{1}";
                     break;
                 case LogEnum.ReadingFile:
                     content = "正在读取:{0}";

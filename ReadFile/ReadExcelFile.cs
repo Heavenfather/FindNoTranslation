@@ -19,6 +19,10 @@ namespace FindNoTranslation.ReadFile
                 DataSet data = null;
                 for (int i = 0; i < files.Length; i++)
                 {
+                    if (files[i].Name.StartsWith("~$"))
+                    {
+                        continue;
+                    }
                     Logger.LogFormat(LogEnum.ReadingFile, files[i].Name);
                     data = GetExcelData(files[i].FullName.Replace("\\","/"));
                     ReadExcel(data);
@@ -69,16 +73,9 @@ namespace FindNoTranslation.ReadFile
                 for (int j = 0; j < columnCount; j++)
                 {
                     result = data.Tables[0].Rows[i][j].ToString();
-                    if (IsSkip())
+                    if (FindNoTranslateMgr.GetInstance().IsMatch(result) && IsSkip())
                     {
-                        foreach (var item in result)
-                        {
-                            if (FindNoTranslateMgr.GetInstance().IsMatch(item.ToString()))
-                            {
-                                AddContent(result);
-                                break;
-                            }
-                        }
+                        AddContent(result);
                     }
                 }
             }

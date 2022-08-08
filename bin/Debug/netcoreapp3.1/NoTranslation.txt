@@ -631,10 +631,8 @@ fatalLevel,32;deflectionLevel,128
 firePower,10
 firePower,2
 firePower,2
-属性 = 基础属性(读值)(CollectionRank) + 属性特性(叠加)(CollectionStrengthen) * 常规收藏品属性特性生效数量(CollectionStrengthen) * (1 + 常规收藏品特性提升比例(CollectionRank))
 firePower,2
 firePower,2
-特性 = 常规收藏品加成特性(叠加)(CollectionStrengthen) + 常规收藏品特性提升比例(CollectionRank)
 firePower,2
 firePower,2
 firePower,2
@@ -1620,7 +1618,6 @@ mainPlace_Per_810001,0.001
 mainPlace_Per_810001,0.001
 mainPlace_Per_810001,0.001
 mainPlace_Per_810001,0.001
-猎荒队成员在一个地下空间发现的U盘残片，由于拥有波动性质的阿卡夏辐射而被注意，通过数据恢复后，得到了一部分关于某个模因炸弹的实验记录数据。
-燥波虫是一类自发光的微小浮游虫，猜测是某种萤火虫遭受阿卡夏辐射的变异体，喜爱电离环境，本身也会制造电离区，能自体产生类EMP效果。
-该生物应当被养殖于干燥的电离环境中，并做好EMP隔绝防护。
-在灯火港贫民窟经常莫名出现EMP事件，经过特工的调查，发现了一台无法停止发电的柴油发电机。
+collectionId
+collectionId collectionId collectionId
+collectionLevel
