@@ -1,0 +1,10 @@
+//参数解释：1.fileType = txt  读取的文件类型,目前支持txt、excel、csv
+//			2.excelStartRow = 4 读取excel类型的文件时，从excel的第几行开始读取,如果是读取txt类型可忽略此行
+//			3.path = E:\Project\Excel 读取的文件所处目录
+//			4.outputType = txt 查找完成后输出为txt文件 outputType = csv 查找完成后输出为csv
+//			5.findLanguage = cn 查找的语言 cn:中文 en:英文
+1.fileType=excel
+2.excelStartRow=3
+3.path=E:\Project\Excel
+4.outputType=txt
+5.findLanguage=en
