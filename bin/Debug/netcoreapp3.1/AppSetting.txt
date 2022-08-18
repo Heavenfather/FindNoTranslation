@@ -6,5 +6,5 @@
 1.fileType=excel
 2.excelStartRow=3
 3.path=E:\Project\Excel
-4.outputType=txt
-5.findLanguage=en
+4.outputType=csv
+5.findLanguage=cn

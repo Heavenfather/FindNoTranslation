@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace FindNoTranslation
 {
@@ -51,7 +49,7 @@ namespace FindNoTranslation
                     content = "正在读取:{0}";
                     break;
                 case LogEnum.SaveFile:
-                    content = "保存文件成功！查看NoTranslation";
+                    content = "保存文件成功！查看NoTranslation.{0}";
                     break;
                 case LogEnum.PressAnyKey:
                     content = "\n按任意键退出";

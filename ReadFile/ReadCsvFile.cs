@@ -21,19 +21,22 @@ namespace FindNoTranslation.ReadFile
                 for (int i = 0; i < files.Length; i++)
                 {
                     Logger.LogFormat(LogEnum.ReadingFile, files[i].Name);
+                    string name = files[i].Name.Split(".")[0];
                     allLines = File.ReadAllLines(files[i].FullName);
+                    int index = 0;
                     for (int j = 0; j < allLines.Length; j++)
                     {
                         if (FindNoTranslateMgr.GetInstance().IsMatch(allLines[j]) && IsSkip())
                         {
-                            AddContent(allLines[j]);
+                            ReadFileMgr.GetInstance().AddContent(name + "_" + index, allLines[j]);
                         }
+                        index++;
                     }
                 }
             }
             catch (Exception e)
             {
-                Console.WriteLine(e);
+                Logger.LogError(e);
             }
 
         }

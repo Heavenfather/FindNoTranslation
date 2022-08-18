@@ -62,6 +62,8 @@ namespace FindNoTranslation.ReadFile
         {
             int columnCount = data.Tables[0].Columns.Count;
             int rowCount = data.Tables[0].Rows.Count;
+            string name = data.Tables[0].TableName;
+            int index = 0;
             string result = "";
             int skipCount = Setting.GetStartRow();
             for (int i = 0; i < rowCount; i++)
@@ -75,10 +77,11 @@ namespace FindNoTranslation.ReadFile
                     result = data.Tables[0].Rows[i][j].ToString();
                     if (FindNoTranslateMgr.GetInstance().IsMatch(result) && IsSkip())
                     {
-                        AddContent(result);
+                        ReadFileMgr.GetInstance().AddContent(name + "_" + index, result);
                     }
+                    index++;
                 }
-            }
+            }            
         }
 
     }

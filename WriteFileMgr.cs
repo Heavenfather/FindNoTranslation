@@ -20,7 +20,7 @@ namespace FindNoTranslation
         {
             try
             {
-                string[] allNoTran = ReadFileMgr.GetInstance().GetAllNoTranslateLines().ToArray();
+                Dictionary<string,string> allNoTran = ReadFileMgr.GetInstance().GetAllNoTranslateLines();
                 string extension = Setting.DEFAULT_SAVE_NAME + "." + Setting.GetOutputType().ToString();
                 string savePath = (AppDomain.CurrentDomain.BaseDirectory + extension).Replace("\\", "/");
                 if (File.Exists(savePath))
@@ -29,17 +29,18 @@ namespace FindNoTranslation
                 }
                 FileStream fs = new FileStream(savePath, FileMode.Create, FileAccess.Write);
                 StreamWriter sw = new StreamWriter(fs, Encoding.UTF8);
-                string result = "";
-                for (int i = 0; i < allNoTran.Length; i++)
+                string result = "Key,Value";
+                sw.WriteLine(result);
+                foreach (var item in allNoTran)
                 {
-                    result = allNoTran[i];
+                    result = string.Format("{0},{1}", item.Key, item.Value);
                     sw.WriteLine(result);
                 }
                 
                 sw.Flush();
                 sw.Close();
                 fs.Close();
-                Logger.Log(LogEnum.SaveFile);
+                Logger.LogFormat(LogEnum.SaveFile,Setting.GetOutputType().ToString());
             }
             catch (Exception e)
             {

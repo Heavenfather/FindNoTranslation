@@ -7,16 +7,6 @@ namespace FindNoTranslation.ReadFile
 {
     public abstract class ReadFileBase
     {
-        private List<string> _noTranslationList = new List<string>();
-
-        public List<string> NoTranslationList
-        {
-            get
-            {
-                return _noTranslationList;
-            }
-        }
-
         /// <summary>
         /// 读取文件
         /// </summary>
@@ -53,21 +43,6 @@ namespace FindNoTranslation.ReadFile
                 }
             }
             return infos.ToArray();
-        }
-
-        /// <summary>
-        /// 添加未翻译内容
-        /// </summary>
-        /// <param name="content"></param>
-        protected void AddContent(string content)
-        {
-            if (string.IsNullOrEmpty(content))
-            {
-                return;
-            }
-            content = content.Replace("\r", "");
-            content = content.Replace("\n", "");
-            _noTranslationList.Add(content);
         }
 
     }

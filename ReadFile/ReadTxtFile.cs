@@ -21,13 +21,16 @@ namespace FindNoTranslation.ReadFile
                 for (int i = 0; i < files.Length; i++)
                 {
                     Logger.LogFormat(LogEnum.ReadingFile, files[i].Name);
+                    int index = 0;
+                    string name = files[i].Name.Split(".")[0];
                     allLines = File.ReadAllLines(files[i].FullName);
                     for (int j = 0; j < allLines.Length; j++)
                     {
                         if (FindNoTranslateMgr.GetInstance().IsMatch(allLines[j]) && IsSkip())
                         {
-                            AddContent(allLines[j]);
+                            ReadFileMgr.GetInstance().AddContent(name + "_" + index, allLines[j]);
                         }
+                        index++;
                     }
                 }
             }

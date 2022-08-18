@@ -9,6 +9,7 @@ namespace FindNoTranslation
             RegisterEncoding();
             Setting.InitConfig();
 
+            ReadFileMgr.GetInstance().ReadFileData();
             WriteFileMgr.GetInstance().SaveFile();
 
             Logger.Log(LogEnum.PressAnyKey);
