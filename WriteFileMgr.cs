@@ -22,7 +22,7 @@ namespace FindNoTranslation
             {
                 Dictionary<string,string> allNoTran = ReadFileMgr.GetInstance().GetAllNoTranslateLines();
                 string extension = Setting.DEFAULT_SAVE_NAME + "." + Setting.GetOutputType().ToString();
-                string savePath = (AppDomain.CurrentDomain.BaseDirectory + extension).Replace("\\", "/");
+                string savePath = (Setting.GetFileDirectorPath() + @"\" + extension).Replace(@"\", "/");
                 if (File.Exists(savePath))
                 {
                     File.Delete(savePath);
@@ -33,14 +33,21 @@ namespace FindNoTranslation
                 sw.WriteLine(result);
                 foreach (var item in allNoTran)
                 {
-                    result = string.Format("{0},{1}", item.Key, item.Value);
+                    if (Setting.GetOutputType() == FileEnum.csv)
+                    {
+                        result = string.Format("\"{0}\",\"{1}\"", item.Key, item.Value);
+                    }
+                    else
+                    {
+                        result = string.Format("{0},{1}", item.Key, item.Value);
+                    }
                     sw.WriteLine(result);
                 }
                 
                 sw.Flush();
                 sw.Close();
                 fs.Close();
-                Logger.LogFormat(LogEnum.SaveFile,Setting.GetOutputType().ToString());
+                Logger.LogFormat(LogEnum.SaveFile, savePath);
             }
             catch (Exception e)
             {

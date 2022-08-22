@@ -18,6 +18,7 @@ namespace FindNoTranslation.ReadFile
             {
                 FileInfo[] files = GetFileInfos();
                 string[] allLines;
+                //txt格式还需要根据实际情况修改，现在这里先简单的就读一整行
                 for (int i = 0; i < files.Length; i++)
                 {
                     Logger.LogFormat(LogEnum.ReadingFile, files[i].Name);

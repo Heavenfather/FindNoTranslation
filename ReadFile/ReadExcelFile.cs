@@ -42,11 +42,9 @@ namespace FindNoTranslation.ReadFile
 
             try
             {
-                fs = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
-                reader = ExcelReaderFactory.CreateReader(fs);
-                
+                fs = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read);
+                reader = ExcelReaderFactory.CreateReader(fs);                
                 data = reader.AsDataSet();
-
                 reader.Close();
                 fs.Close();
             }
@@ -59,11 +57,10 @@ namespace FindNoTranslation.ReadFile
         }
 
         private void ReadExcel(DataSet data)
-        {
+        {            
             int columnCount = data.Tables[0].Columns.Count;
             int rowCount = data.Tables[0].Rows.Count;
             string name = data.Tables[0].TableName;
-            int index = 0;
             string result = "";
             int skipCount = Setting.GetStartRow();
             for (int i = 0; i < rowCount; i++)
@@ -77,9 +74,8 @@ namespace FindNoTranslation.ReadFile
                     result = data.Tables[0].Rows[i][j].ToString();
                     if (FindNoTranslateMgr.GetInstance().IsMatch(result) && IsSkip())
                     {
-                        ReadFileMgr.GetInstance().AddContent(name + "_" + index, result);
+                        ReadFileMgr.GetInstance().AddContent(name + "_" + i + "_" + j, result);
                     }
-                    index++;
                 }
             }            
         }

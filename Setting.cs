@@ -82,7 +82,7 @@ namespace FindNoTranslation
         {
             try
             {
-                string[] param = content.Split("=");
+                string[] param = content.Split('=', 2, StringSplitOptions.RemoveEmptyEntries);
                 if (index == 1)
                 {
                     readType = (FileEnum)Enum.Parse(typeof(FileEnum), param[1].ToLower());
